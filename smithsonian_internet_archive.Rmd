@@ -1,0 +1,48 @@
+---
+title: "smithsionianinternetarchive"
+author: "George Oberle"
+date: "March 29, 2015"
+output: html_document
+---
+
+```{r}
+library(magrittr)
+library(internetarchive)
+library(dplyer)
+ 
+query <- c("collection" = "smithsonian")
+ 
+smithsonian <- query %>%
+ia_search(num_results = 6000) %>%
+ia_get_items() %>%
+ia_metadata() 
+```
+
+
+```{r}
+select_(smithsonian, )
+```
+
+
+```{r}
+library(mullenMisc)
+library(ggplot2)
+library(stringr)
+library(dplyr)
+```
+
+
+```{r}
+marcdata <- read.csv(file = "marc.csv", sep = ",", stringsAsFactors = FALSE)
+```
+
+
+The three steps are (1) get the item ids with ia_search, (2) get the
+JSON representation of those items with ia_get_items, and (3) turn
+those items into a data frame with ia_metadata.
+
+query1 <- c("title" = "damnation of theron ware")
+ia_search(query1)
+
+query1 <- c("collection" = "smithsonian")
+items  <- ia_search(query1, num_results = 6000)
