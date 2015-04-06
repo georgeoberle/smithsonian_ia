@@ -8,7 +8,7 @@ output: html_document
 ```{r}
 library(magrittr)
 library(internetarchive)
-library(dplyer)
+library(dplyr)
  
 query <- c("collection" = "smithsonian")
  
@@ -25,6 +25,19 @@ select_(smithsonian, )
 
 
 ```{r}
+query_1 <- c("creator" = "peale")
+ 
+american_libraries <- query_1 %>%
+ia_search(num_results = 500) %>%
+ia_get_items() %>%
+ia_metadata() 
+```
+
+
+
+
+
+```{r}
 library(mullenMisc)
 library(ggplot2)
 library(stringr)
@@ -35,6 +48,9 @@ library(dplyr)
 ```{r}
 marcdata <- read.csv(file = "marc.csv", sep = ",", stringsAsFactors = FALSE)
 ```
+
+
+
 
 
 The three steps are (1) get the item ids with ia_search, (2) get the
