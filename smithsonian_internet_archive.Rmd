@@ -1,4 +1,3 @@
----
 title: "smithsionianinternetarchive"
 author: "George Oberle"
 date: "March 29, 2015"
@@ -9,6 +8,7 @@ output: html_document
 library(magrittr)
 library(internetarchive)
 library(dplyr)
+library(tidyr)
  
 query <- c("collection" = "smithsonian")
  
@@ -20,7 +20,10 @@ ia_metadata()
 
 
 ```{r}
-select_(smithsonian, )
+wide <- smithsonian %>%
+  filter(field %in% c("title", "date", "creator", publisher)) %>%
+  spread(field, value) %>%
+  mutate(date=as.integer(date))
 ```
 
 
