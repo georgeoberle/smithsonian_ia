@@ -21,10 +21,12 @@ ia_metadata()
 
 ```{r}
 wide <- smithsonian %>%
-  filter(field %in% c("title", "date", "creator", "publisher")) %>%
+  filter(field %in% c("title", "date", "creator", "publisher", "subject1")) %>%
   spread(field, value) %>%
   mutate(date=as.integer(date))
 ```
+
+
 
 
 ```{r}
