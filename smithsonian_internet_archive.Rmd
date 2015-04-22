@@ -34,7 +34,8 @@ wide <- smithsonian %>%
 raw <- read.csv("~/smithsonian_ia/smith_wide.csv")    
 
 n <- raw %>% gather (creator,title, publisher, date)
-n %>% separate(publisher, into = c("publisher", "location"))
+n %>%
+separate(publisher, into = c("publisher", "location"), sep = " : ") 
   
 ```
 
