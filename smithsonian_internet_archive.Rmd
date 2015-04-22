@@ -16,6 +16,7 @@ smithsonian <- query %>%
 ia_search(num_results = 6000) %>%
 ia_get_items() %>%
 ia_metadata() 
+
 ```
 
 
@@ -24,8 +25,18 @@ wide <- smithsonian %>%
   filter(field %in% c("title", "date", "creator", "publisher", "subject1")) %>%
   spread(field, value) %>%
   mutate(date=as.integer(date))
+
+  write.csv(wide, file = "smith_wide.csv")
 ```
 
+
+```{r}
+raw <- read.csv("~/smithsonian_ia/smith_wide.csv")    
+
+n <- raw %>% gather (creator,title, publisher, date)
+n %>% separate(publisher, into = c("publisher", "location"))
+  
+```
 
 
 
